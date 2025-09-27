@@ -1,0 +1,4 @@
+repository "VR mini bot test/VR mini bot test@13469841496174@cloud"
+  path "/"
+    br "/main"
+    co "/main"
