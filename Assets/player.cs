@@ -20,7 +20,6 @@ public class player : MonoBehaviour
     {
         animator = GetComponent<Animator>();    
         aimTargetInitialPosition = aimTarget.position;
-        // Check that 'ball' has been assigned in the Inspector before trying to use it.
         if (ball != null)
         {
             ballScript = ball.GetComponent<Ball>();
@@ -30,7 +29,6 @@ public class player : MonoBehaviour
             UnityEngine.Debug.LogError("Player script: The 'Ball' Transform is not assigned in the Inspector!");
         }
 
-        // Add a check to see if the component was found
         if (ballScript == null)
         {
             UnityEngine.Debug.LogError("Player script: Could not find the 'Ball' component on the assigned Ball object.");
