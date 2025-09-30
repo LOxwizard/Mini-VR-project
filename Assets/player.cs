@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class player : MonoBehaviour
@@ -54,10 +56,14 @@ public class player : MonoBehaviour
             if (ballDir.x > 0)
             {
                 animator.Play("forehand");
+                int flag = 0;
+                UnityEngine.Debug.Log("player hit"+flag);
             }
             else
             {
                 animator.Play("backhand");
+                int flag = 0;
+                UnityEngine.Debug.Log("player hit"+flag);
             }
             aimTarget.position = aimTargetInitialPosition;
         }

@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class bot : MonoBehaviour
 {
 
-    float speed = 10;
+    float speed = 3f;
     Animator animator;
     public Transform ball;
     public Transform aimTarget;
@@ -34,7 +36,7 @@ public class bot : MonoBehaviour
 
     Vector3 PickTarget()
     {
-        int randomValue = Random.Range(0, targets.Length);
+        int randomValue = UnityEngine.Random.Range(0, targets.Length);
         return targets[randomValue].position;
     }
     private void OnTriggerEnter(Collider other)
@@ -48,10 +50,15 @@ public class bot : MonoBehaviour
             if (ballDir.x > 0)
             {
                 animator.Play("forehand");
+                int flag = 1;
+                UnityEngine.Debug.Log("bot hit "+flag);
             }
             else
             {
                 animator.Play("backhand");
+                int flag = 1;
+                UnityEngine.Debug.Log("Player spawned");
+
             }
         }
     }
