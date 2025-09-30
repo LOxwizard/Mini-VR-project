@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Mime;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class bot : MonoBehaviour
 {
-
+    private Ball ballScript;
+     
     float speed = 3f;
     Animator animator;
     public Transform ball;
@@ -21,6 +24,7 @@ public class bot : MonoBehaviour
     {
         targetposition = transform.position;    
         animator = GetComponent<Animator>();
+        ballScript = ball.GetComponent<Ball>();
     }
 
     // Update is called once per frame
@@ -50,14 +54,24 @@ public class bot : MonoBehaviour
             if (ballDir.x > 0)
             {
                 animator.Play("forehand");
-                int flag = 1;
-                UnityEngine.Debug.Log("bot hit "+flag);
+                
+                
+                if (ballScript != null)
+                {
+                    ballScript.Flag = 0; 
+                }
+                UnityEngine.Debug.Log(ballScript.Flag);
             }
             else
             {
                 animator.Play("backhand");
-                int flag = 1;
-                UnityEngine.Debug.Log("Player spawned");
+                
+                if (ballScript != null)
+                {
+                    ballScript.Flag = 0; 
+                }
+                
+                UnityEngine.Debug.Log(ballScript.Flag);
 
             }
         }

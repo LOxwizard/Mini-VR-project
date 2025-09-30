@@ -12,13 +12,29 @@ public class player : MonoBehaviour
     float force = 13;
     Animator animator;
     public Transform ball;
+    private Ball ballScript;
     Vector3 aimTargetInitialPosition;
 
-   
+    // Start is called before the first frame update
     private void Start()
     {
         animator = GetComponent<Animator>();    
         aimTargetInitialPosition = aimTarget.position;
+        // Check that 'ball' has been assigned in the Inspector before trying to use it.
+        if (ball != null)
+        {
+            ballScript = ball.GetComponent<Ball>();
+        }
+        else
+        {
+            UnityEngine.Debug.LogError("Player script: The 'Ball' Transform is not assigned in the Inspector!");
+        }
+
+        // Add a check to see if the component was found
+        if (ballScript == null)
+        {
+            UnityEngine.Debug.LogError("Player script: Could not find the 'Ball' component on the assigned Ball object.");
+        }
     }
 
     // Update is called once per frame
@@ -57,13 +73,23 @@ public class player : MonoBehaviour
             {
                 animator.Play("forehand");
                 int flag = 0;
-                UnityEngine.Debug.Log("player hit"+flag);
+                UnityEngine.Debug.Log("player hit");
+                if (ballScript != null )
+                {
+                    ballScript.Flag = 1; 
+                }
+                UnityEngine.Debug.Log(ballScript.Flag);
             }
-            else
+            else if (ballDir.x < 0)
             {
                 animator.Play("backhand");
-                int flag = 0;
-                UnityEngine.Debug.Log("player hit"+flag);
+                
+                UnityEngine.Debug.Log("player hit");
+                if (ballScript != null )
+                {
+                    ballScript.Flag = 1; 
+                }
+                UnityEngine.Debug.Log(ballScript.Flag);
             }
             aimTarget.position = aimTargetInitialPosition;
         }

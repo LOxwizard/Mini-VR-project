@@ -6,8 +6,8 @@ using TMPro;
 public class Ball : MonoBehaviour
 {
     Vector3 initialPos;
-    int flag;
-    public int Bot_score = 0, Player_score =0;
+    public int Flag;
+    public int Bot_score = 0, Player_score = 0;
     public TextMeshProUGUI botScoreText;
     public TextMeshProUGUI playerScoreText;
     // Start is called before the first frame update
@@ -21,14 +21,17 @@ public class Ball : MonoBehaviour
     {
         if (collision.transform.CompareTag("Wall"))
         {
-            if (flag == 1)
+            UnityEngine.Debug.Log("Flag value" + Flag);
+            if (Flag == 0)
             {
+                UnityEngine.Debug.Log("Entered bot flag");
                 Bot_score += 1;
                 UnityEngine.Debug.Log("bot scored. Score:"+Bot_score);
                 UpdateScoreDisplay();
             }
-            if (flag == 0)
+            else if (Flag == 1)
             {
+                UnityEngine.Debug.Log("Entered player flag");
                 Player_score += 1;
                 UnityEngine.Debug.Log("player scored. Score:"+Player_score);
                 UpdateScoreDisplay();
@@ -40,7 +43,6 @@ public class Ball : MonoBehaviour
     }
     public void UpdateScoreDisplay()
     {
-        // This converts the integer variables to text and updates the UI
         botScoreText.text = $"Bot: {Bot_score}";
         playerScoreText.text = $"Player: {Player_score}";
     }
